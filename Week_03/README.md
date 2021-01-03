@@ -1,1 +1,15 @@
-学习笔记
+1、二叉树的最近公共祖先
+递归解析：
+（1）终止条件：
+	A、当越过叶节点，则直接返回null；
+	B、当root等于p、q，则直接返回root；
+（2）递推工作：
+	A、开启递归左子节点，返回值记为left；
+	B、开启递归右子节点，返回值记为right；
+（3）返回值：根据left和right，可展开为4种情况：
+	A、当left和right同时为空：说明root的左右子树中都不包含p、q，返回null；
+	B、当left和right同时不为空：说明p、q分列在root的左右子树中，因此root为最近公共祖先，返回root；
+	C、当left为空，right不为空：p、q都不在root的左子树中，直接返回right。具体可分为2种情况：
+		1‘：p、q其中一个在root的右子树中，此时right指向p（假设为p）；
+		2’：p、q都在root的右子树中，此时的right指向最近公共祖先节点；
+	D、当left不为空，right为空，与（3）同理
